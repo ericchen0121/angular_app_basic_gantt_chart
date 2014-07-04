@@ -29,26 +29,36 @@ function GanttCtrl($scope) {
     rent: 1000
   }]
 
+  var chart_width = 1000
   var total_duration = $scope.months[3]['endTime'] - $scope.months[0]['startTime']
 
-  function addDuration(){
-    for(i=0; i< $scope.months.length; i++){
-      $scope.months[i]['duration'] = total_duration;
-    }
-  };
+  // function addDuration(){
+  //   for(i=0; i< $scope.months.length; i++){
+  //     $scope.months[i]['duration'] = total_duration;
+  //   }
+  // };
 
   // calculate delayFromStart
   function addDelayDuration(){
     for(i=0; i< $scope.months.length; i++){
       $scope.months[i]['delay'] = $scope.months[i]['startTime'] - $scope.months[0]['startTime'];
       $scope.months[i]['duration'] = $scope.months[i]['endTime'] - $scope.months[i]['startTime'];
-
     }
   };
+
+  function addDelayDurationStyle(){
+    for(i=0; i< $scope.months.length; i++){
+      $scope.months[i]['styleDelay'] = {};
+      $scope.months[i]['styleDuration'] = {};
+      $scope.months[i].styleDelay.width = (($scope.months[i]['delay'] / total_duration) * chart_width).toString() + 'px';
+      $scope.months[i].styleDuration.width = (($scope.months[i]['duration'] / total_duration) * chart_width).toString() + 'px';
+    }
+  }
+
+
   // calculate delayFromStart px
-  // calculate duration
   // calculate duration px
 
   addDelayDuration();
-
+  addDelayDurationStyle();
 }
