@@ -9,7 +9,7 @@
     <div ng-controller="GanttCtrl">
       <table>
         <tr ng-repeat ='month in months'>
-          <td>{{month.name}}</td>
+          <td ng-style="{{month.style}}">{{month.name}}</td>
           <td>{{month.startTime}}</td>
           <td>{{month.endTime}}</td>
           <td>{{month.rent}}</td>

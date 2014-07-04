@@ -4,7 +4,11 @@ function GanttCtrl($scope) {
     name: "Jan",
     startTime: 1388534400,
     endTime: 1391212800,
-    rent: 1200
+    rent: 1200,
+    style: {
+      width: '1200px',
+      color: 'red'
+    }
   },
   {
     name: "Feb",
@@ -24,6 +28,5 @@ function GanttCtrl($scope) {
     endTime: 1398902400,
     rent: 1000
   }]
-
 
 }
