@@ -6,7 +6,6 @@ function GanttCtrl($scope) {
     endTime: 1391212800,
     rent: 1200,
     style: {
-      width: '1200px',
       color: 'red'
     }
   },
@@ -32,13 +31,6 @@ function GanttCtrl($scope) {
   var chart_width = 1000
   var total_duration = $scope.months[3]['endTime'] - $scope.months[0]['startTime']
 
-  // function addDuration(){
-  //   for(i=0; i< $scope.months.length; i++){
-  //     $scope.months[i]['duration'] = total_duration;
-  //   }
-  // };
-
-  // calculate delayFromStart
   function addDelayDuration(){
     for(i=0; i< $scope.months.length; i++){
       $scope.months[i]['delay'] = $scope.months[i]['startTime'] - $scope.months[0]['startTime'];
@@ -54,10 +46,6 @@ function GanttCtrl($scope) {
       $scope.months[i].styleDuration.width = (($scope.months[i]['duration'] / total_duration) * chart_width).toString() + 'px';
     }
   }
-
-
-  // calculate delayFromStart px
-  // calculate duration px
 
   addDelayDuration();
   addDelayDurationStyle();

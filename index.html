@@ -4,19 +4,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.14/angular.min.js"></script>
     <script src="gantt.js"></script>
     <link rel="stylesheet" href="gantt.css">
-  </head>
+  </head> 
   <body>
     <div ng-controller="GanttCtrl">
       <table>
         <tr ng-repeat ='month in months'>
           <td ng-style="{{month.style}}">{{month.name}}</td>
-          <td>{{month.startTime}}</td>
-          <td>{{month.endTime}}</td>
-          <td>{{month.rent}}</td>
           <td id='chart'>
             <div ng-style="{{month.styleDelay}}"></div>
-            <div ng-style="{{month.styleDuration}}">Duration: {{month.styleDuration}}</div>
-            <div>Delay: {{month.delay}}</div>
+            <div class="bar" ng-style="{{month.styleDuration}}">{{month.rent}}</div>
           </td>
         <tr>
       </table>
