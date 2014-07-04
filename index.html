@@ -13,6 +13,11 @@
           <td>{{month.startTime}}</td>
           <td>{{month.endTime}}</td>
           <td>{{month.rent}}</td>
+          <td id='chart'>
+            <div ng-style="{{month.style}}"></div>
+            <div>Duration: {{month.duration}}</div>
+            <div>Delay: {{month.delay}}</div>
+          </td>
         <tr>
       </table>
     </div>

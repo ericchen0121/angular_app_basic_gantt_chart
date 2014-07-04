@@ -29,4 +29,26 @@ function GanttCtrl($scope) {
     rent: 1000
   }]
 
+  var total_duration = $scope.months[3]['endTime'] - $scope.months[0]['startTime']
+
+  function addDuration(){
+    for(i=0; i< $scope.months.length; i++){
+      $scope.months[i]['duration'] = total_duration;
+    }
+  };
+
+  // calculate delayFromStart
+  function addDelayDuration(){
+    for(i=0; i< $scope.months.length; i++){
+      $scope.months[i]['delay'] = $scope.months[i]['startTime'] - $scope.months[0]['startTime'];
+      $scope.months[i]['duration'] = $scope.months[i]['endTime'] - $scope.months[i]['startTime'];
+
+    }
+  };
+  // calculate delayFromStart px
+  // calculate duration
+  // calculate duration px
+
+  addDelayDuration();
+
 }
