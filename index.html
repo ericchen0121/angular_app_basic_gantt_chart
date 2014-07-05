@@ -12,7 +12,9 @@
           <td ng-style="{{month.style}}">{{month.name}}</td>
           <td id='chart'>
             <div ng-style="{{month.styleDelay}}"></div>
-            <div ng-class="{true: 'maxRent', false: 'notMaxRent'}[month.isMaxRent]" ng-style="{{month.styleDuration}}">{{month.rent}}</div>
+            <div class="bar" ng-class="{true: 'maxRent', false: 'notMaxRent'}[month.isMaxRent]" ng-style="{{month.styleDuration}}">
+              <div class="bar">${{month.rent}}</div>
+            </div>
           </td>
         <tr>
       </table>

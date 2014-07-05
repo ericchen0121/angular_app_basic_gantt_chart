@@ -25,9 +25,13 @@ function GanttCtrl($scope) {
     rent: 1000
   }]
 
-  var chart_width = 1150
-  var chart_height = 800
-  var total_duration = $scope.months[3]['endTime'] - $scope.months[0]['startTime']
+  // total chart width and the base bar height, in px
+  var chartWidth = 1150
+  var chartBaseBarHeight = 80
+
+  // the total duration of the the dataset
+  // assumes the last element's endTime is the last date
+  var monthsTotalDuration = $scope.months[$scope.months.length - 1]['endTime'] - $scope.months[0]['startTime']
 
   function addDelayDuration(){
     for(i=0; i< $scope.months.length; i++){
@@ -36,24 +40,25 @@ function GanttCtrl($scope) {
     }
   };
 
-  /* addDelayDurationStyle adds a style hash with css styles */
+  // addDelayDurationStyle adds a style hash to each gantt chart bar by calculating percentage of time to the chartWidth
   function addDelayDurationStyle(){
     for(i=0; i< $scope.months.length; i++){
       $scope.months[i]['styleDelay'] = {};
       $scope.months[i]['styleDuration'] = {};
-      $scope.months[i].styleDelay.width = (($scope.months[i]['delay'] / total_duration) * chart_width).toString() + 'px';
-      $scope.months[i].styleDuration.width = (($scope.months[i]['duration'] / total_duration) * chart_width).toString() + 'px';
+      $scope.months[i].styleDelay.width = (($scope.months[i]['delay'] / monthsTotalDuration) * chartWidth).toString() + 'px';
+      $scope.months[i].styleDuration.width = (($scope.months[i]['duration'] / monthsTotalDuration) * chartWidth).toString() + 'px';
+      $scope.months[i].styleDuration.height = (($scope.months[i]['rent'] / 1000) * chartBaseBarHeight).toString() + 'px';
     }
   }
 
+  // sets isMaxRent flag which css stylesheet styles based on the class
   function setMaxRentStyle(){
     for(i=0; i< $scope.months.length; i++){
       $scope.months[i].isMaxRent = false;
     };
 
-    var maxRent = Math.max.apply(Math, $scope.months.map(function(o) {return o.rent}));
+    var maxRent = Math.max.apply(Math, $scope.months.map(function(o) {return o.rent }));
     var maxRentIndex = $scope.months.map(function(o) {return o.rent }).indexOf(maxRent);
-    console.log("The max rent index is: " + maxRentIndex);
     $scope.months[maxRentIndex].isMaxRent = true;
   }
 
