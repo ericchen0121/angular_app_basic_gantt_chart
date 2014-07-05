@@ -6,10 +6,6 @@
   display: inline-block;
 }
 
-#chart .bar {
-  background-color: blue;
-}
-
 #chart .maxRent {
   background-color: #5E9732;
 }
