@@ -4,10 +4,7 @@ function GanttCtrl($scope) {
     name: "Jan",
     startTime: 1388534400,
     endTime: 1391212800,
-    rent: 1200,
-    style: {
-      color: 'red'
-    }
+    rent: 1200
   },
   {
     name: "Feb",
@@ -28,7 +25,8 @@ function GanttCtrl($scope) {
     rent: 1000
   }]
 
-  var chart_width = 1000
+  var chart_width = 1150
+  var chart_height = 800
   var total_duration = $scope.months[3]['endTime'] - $scope.months[0]['startTime']
 
   function addDelayDuration(){
@@ -38,6 +36,7 @@ function GanttCtrl($scope) {
     }
   };
 
+  /* addDelayDurationStyle adds a style hash with css styles*/
   function addDelayDurationStyle(){
     for(i=0; i< $scope.months.length; i++){
       $scope.months[i]['styleDelay'] = {};
@@ -47,6 +46,14 @@ function GanttCtrl($scope) {
     }
   }
 
+  function addTopRentHighlightStyle(){
+    var maxRent = Math.max.apply(Math, $scope.months.map(function(o) {return o.rent}));
+    var maxRentIndex = $scope.months.map(function(o) {return o.rent }).indexOf(maxRent);
+    console.log("The max rent index is: " + maxRentIndex);
+    $scope.months[maxRentIndex].styleDuration['background-color'] = 'red';
+  }
+
   addDelayDuration();
   addDelayDurationStyle();
+  addTopRentHighlightStyle();
 }
