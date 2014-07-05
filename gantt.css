@@ -9,3 +9,12 @@
 #chart .bar {
   background-color: blue;
 }
+
+#chart .maxRent {
+  background-color: #5E9732;
+}
+
+#chart .notMaxRent {
+  background-color: #08c;
+
+}

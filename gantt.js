@@ -36,7 +36,7 @@ function GanttCtrl($scope) {
     }
   };
 
-  /* addDelayDurationStyle adds a style hash with css styles*/
+  /* addDelayDurationStyle adds a style hash with css styles */
   function addDelayDurationStyle(){
     for(i=0; i< $scope.months.length; i++){
       $scope.months[i]['styleDelay'] = {};
@@ -46,14 +46,18 @@ function GanttCtrl($scope) {
     }
   }
 
-  function addTopRentHighlightStyle(){
+  function setMaxRentStyle(){
+    for(i=0; i< $scope.months.length; i++){
+      $scope.months[i].isMaxRent = false;
+    };
+
     var maxRent = Math.max.apply(Math, $scope.months.map(function(o) {return o.rent}));
     var maxRentIndex = $scope.months.map(function(o) {return o.rent }).indexOf(maxRent);
     console.log("The max rent index is: " + maxRentIndex);
-    $scope.months[maxRentIndex].styleDuration['background-color'] = 'red';
+    $scope.months[maxRentIndex].isMaxRent = true;
   }
 
   addDelayDuration();
   addDelayDurationStyle();
-  addTopRentHighlightStyle();
+  setMaxRentStyle();
 }
